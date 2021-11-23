@@ -55,6 +55,8 @@ class Constants {
   static const String apiEwalletBalanceUsr ='EwalletBalanceUsr';
   static const String apiInsRepurchaseOrder ='InsRepurchaseOrder';
   static const String apiRepurchaseOrderRpt ='RepurchaseOrderRpt';
+  static const String apiTabularGenealogyOrderRpt ='UniLevelPrintViewCount';
+  static const String apiTabularCountViewRpt ='UniLevelPrintViewCountRpt';
 
 
   static const String imagePath = 'assets/images/';
