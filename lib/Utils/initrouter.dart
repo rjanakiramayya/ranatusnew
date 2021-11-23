@@ -17,6 +17,8 @@ import 'package:renatus/Views/registration_status_view.dart';
 import 'package:renatus/Views/sponsor_check_view.dart';
 import 'package:renatus/Views/web_view.dart';
 
+
+
 List<GetPage> routes = [
   GetPage(name: MainView.routeName, page: () => MainView()),
   GetPage(name: LoginView.routeName, page: () => const LoginView()),
