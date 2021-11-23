@@ -49,7 +49,7 @@ class MainView extends StatelessWidget {
                 ? Center(
                     child: TextButton(
                         onPressed: () => homeController.getHomeData(),
-                        child: const Text('Something Went Wrong Refresh....')),
+                        child: const Text('Something Went Wrong Refresh..')),
                   )
                 : SingleChildScrollView(
                     controller: controller,
