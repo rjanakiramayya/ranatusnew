@@ -4,7 +4,6 @@ import 'package:get/instance_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:renatus/Utils/logger.dart';
-import 'package:renatus/Views/business_report_view.dart';
 import 'package:renatus/Views/order_report_view.dart';
 
 class MyDateFilter extends StatefulWidget {
@@ -71,12 +70,6 @@ class _MyDateFilterState extends State<MyDateFilter> {
           'to':to
         };
         Get.toNamed(OrderReportView.routeName,arguments: args);
-      } else  if(Type == 'Business Report Filter') {
-        Map<String, dynamic> args = {
-          'from':from,
-          'to':to
-        };
-        Get.toNamed(BusinessReportView.routeName,arguments: args);
       }
   }
 
