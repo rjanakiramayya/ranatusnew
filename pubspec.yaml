@@ -46,6 +46,7 @@ dependencies:
   url_launcher: ^6.0.12
   carousel_slider: ^4.0.0
   encrypt: ^5.0.0
+  graphview: ^1.0.0
   flutter_html: ^2.1.5
   webview_flutter: ^2.3.1
   intl: ^0.17.0

@@ -17,7 +17,7 @@ class SubChildItem extends StatelessWidget {
         Row(
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 2),
               width: MediaQuery.of(context).size.width / 2.5,
               child: Text(
                 key1,

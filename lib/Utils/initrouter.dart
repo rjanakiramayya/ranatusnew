@@ -15,6 +15,7 @@ import 'package:renatus/Views/registration_form.dart';
 import 'package:renatus/Views/registration_preview_screen.dart';
 import 'package:renatus/Views/registration_status_view.dart';
 import 'package:renatus/Views/sponsor_check_view.dart';
+import 'package:renatus/Views/visual_genealogy_view.dart';
 import 'package:renatus/Views/web_view.dart';
 
 List<GetPage> routes = [
@@ -34,6 +35,7 @@ List<GetPage> routes = [
   GetPage(name: RegistrationStausView.routeName, page: () => const RegistrationStausView()),
   GetPage(name: MyDateFilter.routeName, page: () => MyDateFilter()),
   GetPage(name: OrderReportView.routeName, page: () => const OrderReportView()),
+  GetPage(name: GenealogyUnilevel.routeName, page: () => GenealogyUnilevel()),
 
 ];
 

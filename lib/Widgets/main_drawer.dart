@@ -13,6 +13,7 @@ import 'package:renatus/Views/main_view.dart';
 import 'package:renatus/Views/my_date_filter.dart';
 import 'package:renatus/Views/profile_view.dart';
 import 'package:renatus/Views/sponsor_check_view.dart';
+import 'package:renatus/Views/visual_genealogy_view.dart';
 
 class MianDrawer extends StatelessWidget {
 
@@ -212,6 +213,44 @@ class MianDrawer extends StatelessWidget {
                           'type':'Order Report Filter'
                         };
                         Get.toNamed(MyDateFilter.routeName,arguments: args);
+                      },
+                    ),
+                  ],
+                ),
+                const Divider(),
+                ExpansionTile(
+                  title: const Text(
+                    " Team ",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: const Text(
+                        ' Visual Genealogy ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(GenealogyUnilevel.routeName,arguments: SessionManager.getString(Constants.PREF_IDNo)),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Tabular Genealogy ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+
                       },
                     ),
                   ],
