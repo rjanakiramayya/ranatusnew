@@ -8,6 +8,8 @@ import 'package:renatus/Utils/loaclpackageinfo.dart';
 import 'package:renatus/Utils/logger.dart';
 import 'package:renatus/Utils/network_calls.dart';
 import 'package:renatus/Utils/session_manager.dart';
+import 'package:renatus/Views/VersionUpdateView.dart';
+import 'package:renatus/Views/forget_password_view.dart';
 import 'package:renatus/Views/login_view.dart';
 import 'package:renatus/Views/main_view.dart';
 
@@ -62,7 +64,7 @@ class AuthController extends GetxController {
        //   Get.back();
        // }
       } else if (data[0]['Result'] == 'VERSIONUPDATE') {
-        //Get.offAllNamed(VersionUpdateView.routeName);
+        Get.offAllNamed(VersionUpdateView.routeName);
       } else if(data[0]['MobileNo']=='') {
         Get.snackbar('Login Failed', 'Please Contact Admin For Update Mobile Number',
             backgroundColor: Colors.red,
@@ -70,6 +72,32 @@ class AuthController extends GetxController {
             colorText: Colors.white);
       } else {
         Get.snackbar('Login Failed', data[0]['Result'],
+            backgroundColor: Colors.red,
+            padding: EdgeInsets.symmetric(vertical: 40),
+            colorText: Colors.white);
+      }
+    });
+  }
+
+  void onForgotPassword(String userId) async {
+    Map<String, dynamic> param = {
+      'Action':'Login',
+      'Idno': userId,
+    };
+    NetworkCalls()
+        .callServer(Constants.apiForgotPassword, param)
+        .then((value) {
+      var data = jsonDecode(value!.body);
+      if (data['result'] == 'SUCC') {
+        Get.offAllNamed(LoginView.routeName);
+        Get.snackbar('Success', data['Message'],
+            backgroundColor: Colors.green,
+            padding: EdgeInsets.symmetric(vertical: 40),
+            colorText: Colors.white);
+      } else if (data['result'] == 'VERSIONUPDATE') {
+        Get.offAllNamed(VersionUpdateView.routeName);
+      } else {
+        Get.snackbar('Failed', data['Message'],
             backgroundColor: Colors.red,
             padding: EdgeInsets.symmetric(vertical: 40),
             colorText: Colors.white);
@@ -99,7 +127,7 @@ class AuthController extends GetxController {
         SessionManager.setString(Constants.PREF_EncriptRegId, data['EncRegid'].toString());
         Get.offAndToNamed(MainView.routeName);
       } else if (data[0]['Result'] == 'VERSIONUPDATE') {
-        //Get.offAllNamed(VersionUpdateView.routeName);
+        Get.offAllNamed(VersionUpdateView.routeName);
       } else if(data[0]['MobileNo']=='') {
       Get.snackbar('Login Failed', 'Please Contact Admin For Update Mobile Number',
       backgroundColor: Colors.red,

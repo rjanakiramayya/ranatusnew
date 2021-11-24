@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 import 'package:renatus/Models/order_status_model.dart';
+import 'package:renatus/Views/VersionUpdateView.dart';
+import 'package:renatus/Views/change_password_view.dart';
 import 'package:renatus/Views/Orders/cart_view.dart';
 import 'package:renatus/Views/Orders/check_out_view.dart';
 import 'package:renatus/Views/Orders/order_products.dart';
 import 'package:renatus/Views/Orders/order_status_view.dart';
 import 'package:renatus/Views/Orders/order_user_check.dart';
 import 'package:renatus/Views/dashboard_view.dart';
+import 'package:renatus/Views/forget_password_view.dart';
 import 'package:renatus/Views/login_view.dart';
 import 'package:renatus/Views/main_view.dart';
 import 'package:renatus/Views/my_date_filter.dart';
@@ -22,6 +25,8 @@ import 'package:renatus/Views/web_view.dart';
 List<GetPage> routes = [
   GetPage(name: MainView.routeName, page: () => MainView()),
   GetPage(name: LoginView.routeName, page: () => const LoginView()),
+  GetPage(name: ChangePasswordView.routeName, page: () => const ChangePasswordView()),
+  GetPage(name: ForgetPasswordView.routeName, page: () =>  const ForgetPasswordView()),
   GetPage(name: ProfileView.routeName, page: () => const ProfileView()),
   GetPage(name: DashboardView.routeName, page: () => DashboardView()),
   GetPage(name: OrderUserCheck.routeName, page: () => OrderUserCheck()),
@@ -38,7 +43,7 @@ List<GetPage> routes = [
   GetPage(name: OrderReportView.routeName, page: () => const OrderReportView()),
   GetPage(name: TabularGenealogy.routeName, page: () => const TabularGenealogy()),
   GetPage(name: TabularCountView.routeName, page: () => const TabularCountView()),
-
+  GetPage(name: VersionUpdateView.routeName, page:() => VersionUpdateView()),
 
 ];
 

@@ -7,6 +7,7 @@ import 'package:renatus/Utils/constants.dart';
 import 'package:renatus/Utils/loaclpackageinfo.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Views/Orders/order_user_check.dart';
+import 'package:renatus/Views/change_password_view.dart';
 import 'package:renatus/Views/dashboard_view.dart';
 import 'package:renatus/Views/login_view.dart';
 import 'package:renatus/Views/main_view.dart';
@@ -157,7 +158,8 @@ class MianDrawer extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                       ),
                       onTap: () => {
-                        Navigator.pop(context),
+                        Get.back(),
+                        Get.toNamed(ChangePasswordView.routeName),
 
                       },
                     ),

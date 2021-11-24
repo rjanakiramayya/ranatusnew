@@ -6,6 +6,7 @@ import 'package:renatus/Utils/constants.dart';
 import 'package:renatus/Utils/loaclpackageinfo.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Utils/validator.dart';
+import 'package:renatus/Views/forget_password_view.dart';
 
 class LoginView extends StatefulWidget {
   static const String routeName = '/LoginView';
@@ -24,7 +25,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     SessionManager.ClearAllPREF();
     passwordVisible = true;
@@ -131,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 onPressed: () {
-                                  //Get.toNamed(ForgetPasswordView.routeName);
+                                  Get.toNamed(ForgetPasswordView.routeName);
                                 },
                                 child: const Text(
                                   'Forgot Password ?',

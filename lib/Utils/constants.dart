@@ -44,6 +44,10 @@ class Constants {
   static const String apiDashboard = 'Dashboard';
   static const String apiRegSponsorCheck = 'RegSponsorCheck';
   static const String apiInsertReg = 'InsertReg';
+  static const String apiAChangePassword = 'ChangePassword';
+  static const String apiForgotPassword = 'ForgotPwd';
+
+
 
   //OrderApis
   static const String apiOrderUserCheck ='CheckUserID';
@@ -57,7 +61,6 @@ class Constants {
   static const String apiRepurchaseOrderRpt ='RepurchaseOrderRpt';
   static const String apiTabularGenealogyOrderRpt ='UniLevelPrintViewCount';
   static const String apiTabularCountViewRpt ='UniLevelPrintViewCountRpt';
-
 
   static const String imagePath = 'assets/images/';
   static const String iconPath = 'assets/icons/';

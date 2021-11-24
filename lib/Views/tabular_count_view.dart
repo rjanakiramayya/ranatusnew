@@ -21,8 +21,6 @@ class TabularCountView extends StatelessWidget {
       'Action': 'Report',
       'IDNo': SessionManager.getString(Constants.PREF_IDNo),
       'LevelNo': Levelno,
-
-
     };
     orderList = await NetworkCalls()
         .callServer(Constants.apiTabularCountViewRpt, param)
@@ -37,7 +35,7 @@ class TabularCountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> args=Get.arguments as  Map<String, dynamic>;
+    Map<String, dynamic> args=Get.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tabular Genealogy'),
