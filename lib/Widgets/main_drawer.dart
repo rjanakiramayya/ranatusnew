@@ -253,6 +253,22 @@ class MianDrawer extends StatelessWidget {
 
                       },
                     ),
+                    ListTile(
+                      title: const Text(
+                        ' Business Report ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Map<String, dynamic> args ={
+                          'type':'Business Report Filter'
+                        };
+                        Get.toNamed(MyDateFilter.routeName,arguments: args);
+                      },
+                    ),
                   ],
                 ),
                 const Divider(),

@@ -58,6 +58,7 @@ class Constants {
   static const String apiGetSubTreeUniway ='GetSubTreeUniway';
   static const String apiGetParentTree ='GetParentTree';
   static const String apiCheckPlacement ='CheckPlacement';
+  static const String apiBusinessReport ='BusinessReport';
 
 
   static const String imagePath = 'assets/images/';

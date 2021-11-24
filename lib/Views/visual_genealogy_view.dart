@@ -14,7 +14,6 @@ import 'package:renatus/Utils/logger.dart';
 import 'package:renatus/Utils/network_calls.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Widgets/sub_child_item.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GenealogyUnilevel extends StatefulWidget {
   static const routeName = '/TreeViewPage';

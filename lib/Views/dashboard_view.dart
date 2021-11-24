@@ -272,147 +272,153 @@ class DashboardView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SubHeader('Live Statistics'),
-                  const SizedBox(height: 10,),
-                  Align(alignment: Alignment.topLeft,child: Text('${_dashboardCtrl.model.memberDetals![0]!.Team}',style: const TextStyle(fontWeight: FontWeight.bold),)),
-                  const SizedBox(height: 10,),
-                  Align(alignment: Alignment.topLeft,child: Text('${_dashboardCtrl.model.memberDetals![1]!.Team}',style: const TextStyle(fontWeight: FontWeight.bold),)),
-                  const SizedBox(height: 10,),
-                  Table(
-                    columnWidths: const {
-                      0: FlexColumnWidth(1.8),
-                      1: FlexColumnWidth(4),
-                      2: FlexColumnWidth(4),
-                    },
-                    border: TableBorder.all(color: Colors.black),
-                    children: [
-                      TableRow(children: [
-                        const TableCell(
-                          verticalAlignment: TableCellVerticalAlignment.middle,
-                          child: Center(child: Text('')),
-                        ),
-                        TableCell(
-                          child: Column(
+                  _dashboardCtrl.model.memberDetals!.length>0 ?
+                      Column(
+                        children: [
+                          const SubHeader('Live Statistics'),
+                          const SizedBox(height: 10,),
+                          Align(alignment: Alignment.topLeft,child: Text('${_dashboardCtrl.model.memberDetals![0]!.Team}',style: const TextStyle(fontWeight: FontWeight.bold),)),
+                          const SizedBox(height: 10,),
+                          Align(alignment: Alignment.topLeft,child: Text('${_dashboardCtrl.model.memberDetals![1]!.Team}',style: const TextStyle(fontWeight: FontWeight.bold),)),
+                          const SizedBox(height: 10,),
+                          Table(
+                            columnWidths: const {
+                              0: FlexColumnWidth(1.8),
+                              1: FlexColumnWidth(4),
+                              2: FlexColumnWidth(4),
+                            },
+                            border: TableBorder.all(color: Colors.black),
                             children: [
-                              const SizedBox(
-                                height:25,
-                                child: Center(child: Text('Today')),
+                              TableRow(children: [
+                                const TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Center(child: Text('')),
+                                ),
+                                TableCell(
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height:25,
+                                        child: Center(child: Text('Today')),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 1')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 2')))),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height:25,
+                                        child: Center(child: Text('Closing')),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 1')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 2')))),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ]
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 1')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 2')))),
-                                ],
-                              )
+                              TableRow(
+                                  children: [
+                                    const TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Center(child: Text('Pending')),
+                                    ),
+                                    TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.TDPendingCnt!}')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.TDPendingCnt!}')))),
+                                        ],
+                                      ),
+                                    ),
+                                    TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.CCPendingCnt!}')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.CCPendingCnt!}')))),
+                                        ],
+                                      ),
+                                    ),
+                                  ]
+                              ),
+                              TableRow(
+                                  children: [
+                                    const TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Center(child: Text('Active')),
+                                    ),
+                                    TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.TDActiveCnt!}')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.TDActiveCnt!}')))),
+                                        ],
+                                      ),
+                                    ),
+                                    TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.CCActiveCnt!}')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.CCActiveCnt!}')))),
+                                        ],
+                                      ),
+                                    ),
+                                  ]
+                              ),
+                              TableRow(
+                                  children: [
+                                    const TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Center(child: Text('CC')),
+                                    ),
+                                    TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.TDCC!}')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.TDCC!}')))),
+                                        ],
+                                      ),
+                                    ),
+                                    TableCell(
+                                      verticalAlignment: TableCellVerticalAlignment.middle,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.CCCC!}')))),
+                                          Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.CCCC!}')))),
+                                        ],
+                                      ),
+                                    ),
+                                  ]
+                              ),
                             ],
                           ),
-                        ),
-                        TableCell(
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height:25,
-                                child: Center(child: Text('Closing')),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 1')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: const Center(child: Text('Team 2')))),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ]
-                      ),
-                      TableRow(
-                          children: [
-                           const TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Center(child: Text('Pending')),
-                            ),
-                            TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.TDPendingCnt!}')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.TDPendingCnt!}')))),
-                                ],
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.CCPendingCnt!}')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.CCPendingCnt!}')))),
-                                ],
-                              ),
-                            ),
-                          ]
-                      ),
-                      TableRow(
-                          children: [
-                            const TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Center(child: Text('Active')),
-                            ),
-                            TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.TDActiveCnt!}')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.TDActiveCnt!}')))),
-                                ],
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.CCActiveCnt!}')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.CCActiveCnt!}')))),
-                                ],
-                              ),
-                            ),
-                          ]
-                      ),
-                      TableRow(
-                          children: [
-                            const TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Center(child: Text('CC')),
-                            ),
-                            TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.TDCC!}')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.TDCC!}')))),
-                                ],
-                              ),
-                            ),
-                            TableCell(
-                              verticalAlignment: TableCellVerticalAlignment.middle,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![0]!.CCCC!}')))),
-                                  Expanded(flex:1,child: Container(decoration:BoxDecoration(border: Border.all(color: Colors.black)),height:30,child: Center(child: Text('${_dashboardCtrl.model.memberDetals![1]!.CCCC!}')))),
-                                ],
-                              ),
-                            ),
-                          ]
-                      ),
-                    ],
-                  ),
+                        ],
+                      ) : const Center(),
+
                   const SizedBox(height: 10,)
                 ],
               ),
