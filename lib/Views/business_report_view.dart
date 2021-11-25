@@ -131,6 +131,7 @@ class BusinessReportView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  snapshot.data!.length>1 ?
                   ListView.builder(
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8.0),
@@ -198,7 +199,7 @@ class BusinessReportView extends StatelessWidget {
                         ),
                       );
                     },
-                  ),
+                  ) : const Center(child: Text(Constants.NODATAFOUND),),
                 ],
               ),
             ),

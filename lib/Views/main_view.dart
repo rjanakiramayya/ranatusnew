@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:renatus/Controllers/homecontroller.dart';
 import 'package:renatus/Utils/constants.dart';
 import 'package:renatus/Utils/session_manager.dart';
+import 'package:renatus/Views/Orders/order_user_check.dart';
+import 'package:renatus/Views/login_view.dart';
 import 'package:renatus/Views/web_view.dart';
 import 'package:renatus/Widgets/main_drawer.dart';
 
@@ -49,7 +51,7 @@ class MainView extends StatelessWidget {
                 ? Center(
                     child: TextButton(
                         onPressed: () => homeController.getHomeData(),
-                        child: const Text('Something Went Wrong Refresh from jani')),
+                        child: const Text('Something Went Wrong Refresh.')),
                   )
                 : SingleChildScrollView(
                     controller: controller,
@@ -61,7 +63,8 @@ class MainView extends StatelessWidget {
                               autoPlay: true,
                               viewportFraction: 1,
                               autoPlayInterval: const Duration(seconds: 3),
-                              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                              autoPlayAnimationDuration:
+                                  const Duration(milliseconds: 800),
                               autoPlayCurve: Curves.fastOutSlowIn,
                               aspectRatio: 2.0),
                           items: homeController.homeData.Banners!.map((i) {
@@ -86,7 +89,7 @@ class MainView extends StatelessWidget {
                                           child: Image.asset(
                                               '${Constants.imagePath}No_Product.png'),
                                         ),
-                                    width: Get.width-10,
+                                    width: Get.width - 10,
                                     height: 200,
                                     fit: BoxFit.fill);
                               },
@@ -104,61 +107,80 @@ class MainView extends StatelessWidget {
                             controller: controller,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int i) {
-                              return Container(
-                                width: Get.width / 2,
-                                margin:
-                                    const EdgeInsets.all(Constants.paddingM),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.white30,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width: Get.width / 2,
-                                      child: CachedNetworkImage(
-                                        height: 170,
-                                        width: 170,
-                                        imageUrl:
-                                            "https://ik.imagekit.io/renatuswellness/${homeController.homeData.Products![i]!.ProductImage}",
-                                        imageBuilder: (ctx, imageProvide) =>
-                                            Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
+                              return InkWell(
+                                onTap: (){
+                                  String Url;
+                                  if(homeController.homeData.Products![i]!.ProductName!.contains('Renatus Nova')) {
+                                    Url = 'https://renatuswellness.net/Renatus-nova';
+                                  } else if(homeController.homeData.Products![i]!.ProductName!.contains('Soap')) {
+                                    Url = 'https://renatuswellness.net/Novasteen';
+                                  } else if(homeController.homeData.Products![i]!.ProductName!.contains('Tooth Gel')) {
+                                    Url = 'https://renatuswellness.net/Alosteen';
+                                  } else {
+                                    Url = 'https://renatuswellness.net';
+                                  }
+                                  Map<String,String> args = {
+                                    'title':homeController.homeData.Products![i]!.ProductName ?? '',
+                                    'url':Url,
+                                  };
+                                  Get.toNamed(FWebView.routeName,arguments: args);
+                                },
+                                child: Container(
+                                  width: Get.width / 2,
+                                  margin:
+                                      const EdgeInsets.all(Constants.paddingM),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.white30,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: Get.width / 2,
+                                        child: CachedNetworkImage(
+                                          height: 170,
+                                          width: 170,
+                                          imageUrl:
+                                              "https://ik.imagekit.io/renatuswellness/${homeController.homeData.Products![i]!.ProductImage}",
+                                          imageBuilder: (ctx, imageProvide) =>
+                                              Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                topRight: Radius.circular(10),
+                                              ),
+                                              image: DecorationImage(
+                                                  image: imageProvide,
+                                                  fit: BoxFit.cover),
                                             ),
-                                            image: DecorationImage(
-                                                image: imageProvide,
-                                                fit: BoxFit.cover),
                                           ),
+                                          placeholder: (context, url) => Container(
+                                              child: const Center(
+                                                  child:
+                                                      CircularProgressIndicator())),
+                                          errorWidget: (context, url, error) =>
+                                              Container(
+                                                  child: Image.asset(
+                                                      '${Constants.imagePath}No_Product.png')),
+                                          fit: BoxFit.cover,
                                         ),
-                                        placeholder: (context, url) => Container(
-                                            child: const Center(
-                                                child:
-                                                    CircularProgressIndicator())),
-                                        errorWidget: (context, url, error) =>
-                                            Container(
-                                                child: Image.asset(
-                                                    '${Constants.imagePath}No_Product.png')),
-                                        fit: BoxFit.cover,
                                       ),
-                                    ),
-                                    Container(
-                                      width: Get.width / 2,
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.all(4),
-                                      child: Text(
-                                        homeController.homeData.Products![i]!
-                                                .ProductName ??
-                                            '',
-                                        style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
+                                      Container(
+                                        width: Get.width / 2,
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.all(4),
+                                        child: Text(
+                                          homeController.homeData.Products![i]!
+                                                  .ProductName ??
+                                              '',
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -187,7 +209,9 @@ class MainView extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.deepOrange),
                                     ),
-                                    const SizedBox(height: 5,),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
                                     const Text(
                                       'Renatus Nova® is studded with 9 ingredients which directly originates from the laps of nature. All of these nutrients consists of some unique quality which helps our body and mind immensely.',
                                       style: TextStyle(
@@ -195,7 +219,9 @@ class MainView extends StatelessWidget {
                                         color: Colors.black,
                                       ),
                                     ),
-                                    const SizedBox(height: 5,),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
                                     Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -205,6 +231,17 @@ class MainView extends StatelessWidget {
                                       height: 32,
                                       child: TextButton(
                                         onPressed: () => {
+                                          if (SessionManager.getString(
+                                                  Constants.PREF_IsLogin) ==
+                                              '1')
+                                            {
+                                              Get.toNamed(
+                                                  OrderUserCheck.routeName),
+                                            }
+                                          else
+                                            {
+                                              Get.toNamed(LoginView.routeName),
+                                            }
                                         },
                                         child: const Text(
                                           'Shop Now',
@@ -220,8 +257,15 @@ class MainView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10,),
-                        Image.asset('${Constants.imagePath}fotter.png',width: Get.width,height: 200,fit: BoxFit.fill,),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Image.asset(
+                          '${Constants.imagePath}fotter.png',
+                          width: Get.width,
+                          height: 200,
+                          fit: BoxFit.fill,
+                        ),
                       ],
                     ),
                   );

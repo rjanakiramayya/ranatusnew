@@ -56,7 +56,7 @@ class SponsorCheckView extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   validator: (val) => Validator.idValidator(val!),
                   inputFormatters: [
-                    FilteringTextInputFormatter.deny(r'\s')
+                    FilteringTextInputFormatter.deny(RegExp(r'\s'))
                   ],
                   decoration: InputDecoration(
                     filled: true,
@@ -79,7 +79,7 @@ class SponsorCheckView extends StatelessWidget {
                 child: TextButton(
                   onPressed: () => _checkSponsor(),
                   child: const Text(
-                    'Check',
+                    'Next',
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),

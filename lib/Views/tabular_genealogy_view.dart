@@ -58,7 +58,7 @@ class TabularGenealogy extends StatelessWidget {
         builder: (ctx, AsyncSnapshot<List<TabularGenealogyModel>> data) {
           if (data.connectionState != ConnectionState.done) {
             return const Center(
-              child: Text('gene'),
+              child: Text(''),
             );
           } else if (data.hasData) {
             return ListView.builder(

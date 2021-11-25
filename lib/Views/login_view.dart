@@ -90,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
                                   validator: (val) => Validator.idValidator(val!),
                                   textInputAction: TextInputAction.next,
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.deny(r'\s')
+                                    FilteringTextInputFormatter.deny(RegExp(r'\s'))
                                   ],
                                   decoration: InputDecoration(
                                     filled: true,
@@ -114,7 +114,7 @@ class _LoginViewState extends State<LoginView> {
                                 validator: (val) =>
                                     Validator.passwordValidator(val!),
                                 inputFormatters: [
-                                  FilteringTextInputFormatter.deny(r'\s')
+                                  FilteringTextInputFormatter.deny(RegExp(r'\s'))
                                 ],
                                 decoration: InputDecoration(
                                   filled: true,

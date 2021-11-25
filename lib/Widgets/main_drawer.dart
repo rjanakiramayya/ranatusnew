@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -5,16 +6,44 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renatus/Utils/constants.dart';
 import 'package:renatus/Utils/loaclpackageinfo.dart';
+import 'package:renatus/Utils/logger.dart';
+import 'package:renatus/Utils/network_calls.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Views/Orders/order_user_check.dart';
+import 'package:renatus/Views/bank_details_view.dart';
+import 'package:renatus/Views/change_password_view.dart';
 import 'package:renatus/Views/dashboard_view.dart';
 import 'package:renatus/Views/login_view.dart';
 import 'package:renatus/Views/main_view.dart';
 import 'package:renatus/Views/my_date_filter.dart';
+import 'package:renatus/Views/my_referrals.dart';
 import 'package:renatus/Views/profile_view.dart';
 import 'package:renatus/Views/sponsor_check_view.dart';
+import 'package:renatus/Views/tabular_genealogy_view.dart';
+import 'package:renatus/Views/visual_genealogy_view.dart';
 
 class MianDrawer extends StatelessWidget {
+  const MianDrawer({Key? key}) : super(key: key);
+
+  void _checkKycStatus(String type) {
+    Map<String, String> param = {
+      'regid':SessionManager.getString(Constants.PREF_RegId),
+      'tblname':'MemberKyc',
+      'stscolumn':'kycsts',
+      'proftype':type,
+    };
+    NetworkCalls().callServer(Constants.apiMemberKycRequestStsUsr, param).then((value) {
+      var data = jsonDecode(value!.body);
+      //0-pendding 1-Approved -1 or 2 - allow to upload
+      if(data['Requeststs']=='0') {
+        Logger.ShowWorningAlert('Warning', 'Your Request Is Waiting for Admin Approval.');
+      } else {
+        if(type=='BANK') {
+          Get.toNamed(BankDetailsView.routeName,arguments: data['Requeststs']);
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,8 +185,8 @@ class MianDrawer extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                       ),
                       onTap: () => {
-                        Navigator.pop(context),
-
+                        Get.back(),
+                        Get.toNamed(ChangePasswordView.routeName),
                       },
                     ),
                     ListTile(
@@ -217,6 +246,112 @@ class MianDrawer extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
+                ExpansionTile(
+                  title: const Text(
+                    "KYC Manager",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: const Text(
+                        ' Upload Bank Details ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        _checkKycStatus('BANK'),
+                      },
+                    ),
+                  ],
+                ),
+                const Divider(),
+                ExpansionTile(
+                  title: const Text(
+                    " Team ",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: const Text(
+                        ' Visual Genealogy ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(GenealogyUnilevel.routeName,arguments: SessionManager.getString(Constants.PREF_IDNo)),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Tabular Genealogy ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Get.toNamed(TabularGenealogy.routeName);
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Business Report ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Map<String, dynamic> args ={
+                          'type':'Business Report Filter'
+                        };
+                        Get.toNamed(MyDateFilter.routeName,arguments: args);
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' My Referrals ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Get.toNamed(MyReferralsPage.routeName);
+                      },
+                    ),
+                  ],
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    ' Registration ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Get.toNamed(SponsorCheckView.routeName);
+                  },
+                ),
+                const Divider(),
                 ListTile(
                   title: const Text(
                     'Logout',
@@ -263,6 +398,7 @@ class MianDrawer extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 ),
+                const Divider(),
                 ListTile(
                   title: const Text(
                     'Login',
@@ -276,6 +412,7 @@ class MianDrawer extends StatelessWidget {
                     Get.toNamed(LoginView.routeName),
                   },
                 ),
+                const Divider(),
                 ListTile(
                   title: const Text(
                     'Registration',
@@ -289,6 +426,7 @@ class MianDrawer extends StatelessWidget {
                     Get.toNamed(SponsorCheckView.routeName),
                   },
                 ),
+                const Divider(),
               ],
             ),
     );

@@ -286,7 +286,7 @@ class _GenealogyUnilevelPageState extends State<GenealogyUnilevel> {
   void callPlacementCheck(String id) {
     Map<String, String> param = {
       'dwnidno': id,
-      'idno': IDNO,
+      'spridno': IDNO,
     };
     NetworkCalls().callServer(Constants.apiCheckPlacement, param).then((value) {
       var data = jsonDecode(value!.body);

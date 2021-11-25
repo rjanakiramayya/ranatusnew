@@ -84,20 +84,20 @@ class _ProfileViewState extends State<ProfileView> {
       appBar: AppBar(
         title: const Text('Profile'),
         actions: [
-          TextButton(
-            onPressed: () {
-              if(isEditing) {
-                //_onUpdateData();
-              }else {
-                setState(() {
-                  _profileModel.MemberProfile![0]!.Relation == '' ? relationindex = 0 :
-                  relationindex = Constants.relations.indexWhere((ele) => ele==_profileModel.MemberProfile![0]!.Relation);
-                  isEditing = true;
-                });
-              }
-            },
-            child: isEditing ? const Text('Update',style: TextStyle(color: Colors.white),) : const Text('Edit',style: TextStyle(color: Colors.white),),
-          ),
+          // TextButton(
+          //   onPressed: () {
+          //     if(isEditing) {
+          //       //_onUpdateData();
+          //     }else {
+          //       setState(() {
+          //         _profileModel.MemberProfile![0]!.Relation == '' ? relationindex = 0 :
+          //         relationindex = Constants.relations.indexWhere((ele) => ele==_profileModel.MemberProfile![0]!.Relation);
+          //         isEditing = true;
+          //       });
+          //     }
+          //   },
+          //   child: isEditing ? const Text('Update',style: TextStyle(color: Colors.white),) : const Text('Edit',style: TextStyle(color: Colors.white),),
+          // ),
         ],
       ),
       body: !isLoad ? const Center() : SingleChildScrollView(
@@ -289,76 +289,73 @@ class _ProfileViewState extends State<ProfileView> {
                 const SizedBox(
                   height: 10,
                 ),
-                // TextFormField(
-                //   enabled: isEditing,
-                //   controller: emailCtrl,
-                //   keyboardType: TextInputType.emailAddress,
-                //   validator: (v) => [
-                //     v.isRequired(errorText: 'Enter Email'),
-                //     v.matchPattern(r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)',errorText: 'Please Enter Valid Email'),
-                //   ].validate(),
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(),
-                //     labelText: 'Email',
-                //   ),
-                // ),
-                // SubHeader('Nominee Details'),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // TextFormField(
-                //   enabled: isEditing,
-                //   controller: nomineeCtrl,
-                //   keyboardType: TextInputType.text,
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(),
-                //     labelText: 'Nominee Name',
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // IgnorePointer(
-                //   ignoring: !isEditing,
-                //   child: Container(
-                //     padding: EdgeInsets.symmetric(horizontal: 10.0),
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(0),
-                //       border: Border.all(
-                //         color: Colors.black38,
-                //       ),
-                //     ),
-                //     child: DropdownButtonHideUnderline(
-                //       child: new DropdownButton<String>(
-                //           iconEnabledColor: Colors.black,
-                //           isExpanded: true,
-                //           hint: Text(
-                //             Constants.relations[relationindex],
-                //             style: TextStyle(
-                //                 color: Colors.black87,
-                //                 fontSize: 15.0,
-                //                 fontFamily: 'Nunito'),
-                //           ),
-                //           items: Constants.relations.map((String map) {
-                //             return new DropdownMenuItem<String>(
-                //               value: map,
-                //               child: new Text(
-                //                 map,
-                //                 style: new TextStyle(
-                //                   fontSize: 15.0,
-                //                   color: Colors.black87,
-                //                 ),
-                //               ),
-                //             );
-                //           }).toList(),
-                //           onChanged: (value) {
-                //             setState(() {
-                //               relationindex = Constants.relations.indexOf(value);
-                //             });
-                //           }),
-                //     ),
-                //   ),
-                // ),
+                TextFormField(
+                  enabled: isEditing,
+                  controller: emailCtrl,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (v) => Validator.emailValidator(v!),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                ),
+                const SubHeader('Nominee Details'),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  enabled: isEditing,
+                  controller: nomineeCtrl,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Nominee Name',
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                IgnorePointer(
+                  ignoring: !isEditing,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(
+                        color: Colors.black38,
+                      ),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                          iconEnabledColor: Colors.black,
+                          isExpanded: true,
+                          hint: Text(
+                            Constants.relations[relationindex],
+                            style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 15.0,
+                                fontFamily: 'Nunito'),
+                          ),
+                          items: Constants.relations.map((String map) {
+                            return  DropdownMenuItem<String>(
+                              value: map,
+                              child:  Text(
+                                map,
+                                style: const TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              relationindex = Constants.relations.indexOf(value!);
+                            });
+                          }),
+                    ),
+                  ),
+                ),
                 //datePicker('NomineeDOB'),
               ],
             ),

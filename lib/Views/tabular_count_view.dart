@@ -45,7 +45,7 @@ class TabularCountView extends StatelessWidget {
         builder: (ctx, AsyncSnapshot<List<TabularCountModel>> data) {
           if (data.connectionState != ConnectionState.done) {
             return const Center(
-              child: Text('gene'),
+              child: Text(''),
             );
           } else if (data.hasData) {
             return ListView.builder(

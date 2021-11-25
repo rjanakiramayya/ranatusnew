@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:renatus/Controllers/authcontroller.dart';
 import 'package:renatus/Utils/constants.dart';
 import 'package:renatus/Utils/validator.dart';
-
 
 class ForgetPasswordView extends StatefulWidget {
   static const String routeName = '/ForgetPasswordView';
@@ -19,17 +17,16 @@ class ForgetPasswordView extends StatefulWidget {
 class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   var authCtrl = Get.find<AuthController>();
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController userIdCtrl,passwordCtrl;
+  late TextEditingController userIdCtrl, passwordCtrl;
 
   @override
   void initState() {
     super.initState();
     userIdCtrl = TextEditingController();
-
   }
 
   _validate() {
-    if(_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       authCtrl.onForgotPassword(userIdCtrl.text);
     }
   }
@@ -42,7 +39,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           width: Get.width,
           height: Get.height -
               AppBar().preferredSize.height -
@@ -53,21 +50,28 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset('${Constants.iconPath}rlogo.png'),
-                const SizedBox(height: 15,),
-                TextFormField(
-                  controller: userIdCtrl,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                   BlacklistingTextInputFormatter(RegExp(r'\s')),
-                  ],
-                  validator: (val) =>
-                      Validator.passwordValidator(val!),
-                  decoration: const InputDecoration(
-                      labelText: 'Enter User Id',
-                      suffixIcon: Icon(Icons.person)),
+                const SizedBox(
+                  height: 15,
                 ),
-
-                const SizedBox(height: 25,),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: userIdCtrl,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      BlacklistingTextInputFormatter(RegExp(r'\s')),
+                    ],
+                    validator: (val) => Validator.idValidator(val!),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        labelText: 'Enter User Id',
+                        suffixIcon: const Icon(Icons.person)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -78,8 +82,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     onPressed: () => _validate(),
                     child: const Text(
                       'Submit',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ),

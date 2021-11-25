@@ -48,6 +48,11 @@ class Constants {
   static const String apiForgotPassword = 'ForgotPwd';
   static const String apiTabularGenealogyOrderRpt ='UniLevelPrintViewCount';
   static const String apiTabularCountViewRpt ='UniLevelPrintViewCountRpt';
+  static const String apiMemberKycRequestStsUsr ='MemberKycRequestStsUsr';
+  static const String apiUploadBankDetailsRequestUsr ='UploadBankDetailsRequestUsr';
+  static const String apiBankDetails ='BankDetails';
+  static const String apiGetUploadBankDetailsUsr ='GetUploadBankDetailsUsr';
+  static const String apiMyReferralsViewRpt ='DirectConsultantsReport';
 
   //OrderApis
   static const String apiOrderUserCheck ='CheckUserID';

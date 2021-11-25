@@ -98,6 +98,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
         Logger.ShowWorningAlert('Warning', 'Select Date of Birth.');
       } else if(passCtrl.text!=cpassCtrl.text) {
         Logger.ShowWorningAlert('Warning', 'Password and Confirm Password Not Same.');
+      }  else  if(!isChack) {
+        Logger.ShowWorningAlert('Warning', 'Check Terms and Conditions.');
       } else if(emailCtrl.text=='') {
         callNext();
       } else {
@@ -418,7 +420,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               validator: (val) => Validator.inputValidate(val!),
                               textInputAction: TextInputAction.next,
                               inputFormatters: [
-                                FilteringTextInputFormatter.deny(r'\s')
                               ],
                               decoration: InputDecoration(
                                 filled: true,
@@ -442,7 +443,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               validator: (val) => Validator.noValidate(val!),
                               textInputAction: TextInputAction.next,
                               inputFormatters: [
-                                FilteringTextInputFormatter.deny(r'\s')
+
                               ],
                               decoration: InputDecoration(
                                 filled: true,
@@ -466,7 +467,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               validator: (val) => Validator.inputValidate(val!),
                               textInputAction: TextInputAction.next,
                               inputFormatters: [
-                                FilteringTextInputFormatter.deny(r'\s')
+
                               ],
                               decoration: InputDecoration(
                                 filled: true,
@@ -536,6 +537,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               keyboardType: TextInputType.text,
                               validator: (val) => Validator.inputValidate(val!),
                               textInputAction: TextInputAction.next,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(RegExp(r'\s'))
+                              ],
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white,
@@ -557,6 +561,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               keyboardType: TextInputType.text,
                               validator: (val) => Validator.inputValidate(val!),
                               textInputAction: TextInputAction.next,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(RegExp(r'\s'))
+                              ],
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white,
@@ -668,6 +675,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               controller: emailCtrl,
                               keyboardType: TextInputType.emailAddress,
                               maxLength: 10,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(RegExp(r'\s'))
+                              ],
                               validator: (val) => Validator.noValidate(val!),
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -784,7 +794,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                   Validator.passwordValidator(val!),
                               textInputAction: TextInputAction.next,
                               inputFormatters: [
-                                FilteringTextInputFormatter.deny(r'\s')
+                                FilteringTextInputFormatter.deny(RegExp(r'\s'))
                               ],
                               decoration: InputDecoration(
                                 filled: true,
@@ -809,7 +819,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                   Validator.passwordValidator(val!),
                               textInputAction: TextInputAction.next,
                               inputFormatters: [
-                                FilteringTextInputFormatter.deny(r'\s')
+                                FilteringTextInputFormatter.deny(RegExp(r'\s'))
                               ],
                               decoration: InputDecoration(
                                 filled: true,

@@ -61,4 +61,43 @@ class NetworkCalls {
       client.close();
     }
   }
+
+  Future<http.Response?> callPlanServer(
+      String method, Map<String, dynamic> param,[bool isProgress = true]) async {
+    EasyLoading.show(status: 'loading...',dismissOnTap: false);
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    try {
+      if(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)
+      {
+        Logger.log('logger url::: ${Constants.baseUrl}${method}');
+        Logger.log('logger param::: ${json.encode(param)}');
+
+        final response = await client.post(Uri.parse(Constants.baseUrl+method),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: json.encode(param))
+            .whenComplete(() async =>  EasyLoading.dismiss());
+
+        EasyLoading.dismiss();
+        Logger.log("logger response code:::${response.statusCode}");
+        Logger.log("logger response:::${response.body}");
+        if(response.statusCode == 503) {
+          if(response.body.contains('under maintenance')) {
+            // Get.offAllNamed(MaintananceScreen.routeName);
+          }
+        } else {
+          return response;
+        }
+      } else {
+        EasyLoading.dismiss();
+        Logger.ShowErrorAlert('NetWorkError','No Internet Connection');
+      }
+    } on SocketException catch (_) {
+      EasyLoading.dismiss();
+      Logger.ShowErrorAlert('NetWorkError','No Internet Connection');
+    } finally {
+      client.close();
+    }
+  }
 }

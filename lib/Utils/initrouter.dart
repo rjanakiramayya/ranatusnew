@@ -5,6 +5,10 @@ import 'package:renatus/Views/Orders/check_out_view.dart';
 import 'package:renatus/Views/Orders/order_products.dart';
 import 'package:renatus/Views/Orders/order_status_view.dart';
 import 'package:renatus/Views/Orders/order_user_check.dart';
+import 'package:renatus/Views/bank_details_view.dart';
+import 'package:renatus/Views/my_referrals.dart';
+import 'package:renatus/Views/version_update_view.dart';
+import 'package:renatus/Views/business_report_view.dart';
 import 'package:renatus/Views/change_password_view.dart';
 import 'package:renatus/Views/dashboard_view.dart';
 import 'package:renatus/Views/forget_password_view.dart';
@@ -17,6 +21,9 @@ import 'package:renatus/Views/registration_form.dart';
 import 'package:renatus/Views/registration_preview_screen.dart';
 import 'package:renatus/Views/registration_status_view.dart';
 import 'package:renatus/Views/sponsor_check_view.dart';
+import 'package:renatus/Views/tabular_count_view.dart';
+import 'package:renatus/Views/tabular_genealogy_view.dart';
+import 'package:renatus/Views/visual_genealogy_view.dart';
 import 'package:renatus/Views/web_view.dart';
 
 List<GetPage> routes = [
@@ -38,6 +45,13 @@ List<GetPage> routes = [
   GetPage(name: RegistrationStausView.routeName, page: () => const RegistrationStausView()),
   GetPage(name: MyDateFilter.routeName, page: () => MyDateFilter()),
   GetPage(name: OrderReportView.routeName, page: () => const OrderReportView()),
+  GetPage(name: GenealogyUnilevel.routeName, page: () => GenealogyUnilevel()),
+  GetPage(name: BusinessReportView.routeName, page: () => const BusinessReportView()),
+  GetPage(name: TabularGenealogy.routeName, page: () => const TabularGenealogy()),
+  GetPage(name: TabularCountView.routeName, page: () => const TabularCountView()),
+  GetPage(name: VersionUpdateView.routeName, page:() => VersionUpdateView()),
+  GetPage(name: BankDetailsView.routeName, page:() => BankDetailsView()),
+  GetPage(name: MyReferralsPage.routeName, page: () => const MyReferralsPage()),
 
 ];
 
