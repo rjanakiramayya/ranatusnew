@@ -79,6 +79,29 @@ class AuthController extends GetxController {
     });
   }
 
+  void onTransForgotPassword() async {
+    Map<String, dynamic> param = {
+      'Action':'TPWD',
+      'Idno': SessionManager.getString(Constants.PREF_IDNo),
+    };
+    NetworkCalls()
+        .callServer(Constants.apiForgotPassword, param)
+        .then((value) {
+      var data = jsonDecode(value!.body);
+      if (data['Msg'] == 'Success') {
+        Get.snackbar('Success', data['Message'],
+            backgroundColor: Colors.green,
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            colorText: Colors.white);
+      } else {
+        Get.snackbar('Failed', data['Message'],
+            backgroundColor: Colors.red,
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            colorText: Colors.white);
+      }
+    });
+  }
+
   void onForgotPassword(String userId) async {
     Map<String, dynamic> param = {
       'Action':'Login',

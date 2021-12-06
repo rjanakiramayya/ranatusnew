@@ -6,8 +6,9 @@ import 'package:flutter/cupertino.dart';
 class AdaptiveFlatButton extends StatelessWidget {
   final String text;
   final Function handler;
+  final Color color;
 
-  AdaptiveFlatButton(this.text, this.handler);
+  AdaptiveFlatButton(this.text, this.handler,[this.color = Colors.white]);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,9 @@ class AdaptiveFlatButton extends StatelessWidget {
             textColor: Color(0xff020f72),
             child: Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white
+                color: color,
               ),
             ),
             onPressed: () => handler,

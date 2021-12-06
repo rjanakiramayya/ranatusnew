@@ -35,7 +35,7 @@ class DashboardView extends StatelessWidget {
                   const SizedBox(height: 10,),
                   ClipOval(
                     child: CachedNetworkImage(
-                      imageUrl: _dashboardCtrl.model.Profiledetals![0]!.ProfilePic ?? '',
+                      imageUrl: "${Constants.profileUrl}${_dashboardCtrl.model.Profiledetals![0]!.ProfilePic}",
                       height: 100,
                       width: 100,
                       placeholder: (context, url) => const SizedBox(
@@ -45,15 +45,15 @@ class DashboardView extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       ),
-                      imageBuilder: (context, imageProvider) => Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image:
-                          DecorationImage(image: imageProvider, fit: BoxFit.cover),
-                        ),
-                      ),
+                      // imageBuilder: (context, imageProvider) => Container(
+                      //   height: 100,
+                      //   width: 100,
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(15),
+                      //     image:
+                      //     DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                      //   ),
+                      // ),
                       errorWidget: (context, url, error) => SizedBox(
                         height: 100,
                         width: 100,

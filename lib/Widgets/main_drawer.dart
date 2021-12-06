@@ -10,17 +10,31 @@ import 'package:renatus/Utils/logger.dart';
 import 'package:renatus/Utils/network_calls.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Views/Orders/order_user_check.dart';
+import 'package:renatus/Views/address_details_view.dart';
 import 'package:renatus/Views/bank_details_view.dart';
 import 'package:renatus/Views/change_password_view.dart';
+import 'package:renatus/Views/company_bank_details.dart';
+import 'package:renatus/Views/credit_request_report_data.dart';
 import 'package:renatus/Views/dashboard_view.dart';
+import 'package:renatus/Views/download_report.dart';
+import 'package:renatus/Views/fundtransfer_data.dart';
+import 'package:renatus/Views/grievancecell.dart';
 import 'package:renatus/Views/login_view.dart';
 import 'package:renatus/Views/main_view.dart';
 import 'package:renatus/Views/my_date_filter.dart';
 import 'package:renatus/Views/my_referrals.dart';
+import 'package:renatus/Views/pan_details_view.dart';
+import 'package:renatus/Views/pay_income_report.dart';
+import 'package:renatus/Views/pay_onhold_report.dart';
+import 'package:renatus/Views/pay_scheme_offer.dart';
 import 'package:renatus/Views/profile_view.dart';
 import 'package:renatus/Views/sponsor_check_view.dart';
 import 'package:renatus/Views/tabular_genealogy_view.dart';
+import 'package:renatus/Views/update_profile_picture.dart';
+import 'package:renatus/Views/upload_gst_view.dart';
 import 'package:renatus/Views/visual_genealogy_view.dart';
+import 'package:renatus/Views/wallet_summary.dart';
+import 'package:renatus/Views/web_view.dart';
 
 class MianDrawer extends StatelessWidget {
   const MianDrawer({Key? key}) : super(key: key);
@@ -40,6 +54,12 @@ class MianDrawer extends StatelessWidget {
       } else {
         if(type=='BANK') {
           Get.toNamed(BankDetailsView.routeName,arguments: data['Requeststs']);
+        } else if(type == 'PAN') {
+          Get.toNamed(PanDetailsView.routeName,arguments: data['Requeststs']);
+        } else if(type == 'ID Card') {
+          Get.toNamed(AddressDetailsView.routeName,arguments: data['Requeststs']);
+        } else if(type == 'GST') {
+          Get.toNamed(UploadGSTNoView.routeName,arguments: data['Requeststs']);
         }
       }
     });
@@ -199,7 +219,7 @@ class MianDrawer extends StatelessWidget {
                       ),
                       onTap: () => {
                         Navigator.pop(context),
-
+                        Get.toNamed(UpdateProfilePicture.routeName),
                       },
                     ),
                   ],
@@ -266,6 +286,45 @@ class MianDrawer extends StatelessWidget {
                       onTap: () => {
                         Get.back(),
                         _checkKycStatus('BANK'),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Upload PAN Details ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        _checkKycStatus('PAN'),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Upload ID Details ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        _checkKycStatus('ID Card'),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Upload GST Details ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        _checkKycStatus('GST'),
                       },
                     ),
                   ],
@@ -338,9 +397,188 @@ class MianDrawer extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
+                ExpansionTile(
+                  title: const Text(
+                    "My Shopping Ewallet",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: const Text(
+                        ' Wallet Summary ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(WalletSummary.routeName,arguments: 'Wallet Summary'),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Credit Request ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(WalletSummary.routeName,arguments: 'Credit Request'),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Credit Request Report ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(CreditRequestReportData.routeName),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Fund Transfer ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(FundTransferData.routeName),
+                      },
+                    ),
+                  ],
+                ),
+                const Divider(),
+                ExpansionTile(
+                  title: const Text(
+                    "My PayOuts",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: const Text(
+                        ' Income Report ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(PayIncomeReport.routeName),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' OnHold Report ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Get.toNamed(PayOnholdReport.routeName);
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Scheme and Offer Status ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Get.toNamed(PaySchemeOffer.routeName);
+                      },
+                    ),
+/*       ListTile(
+         title: const Text(
+           ' Cash Reward & Award ',
+           style: TextStyle(
+               fontSize: 16,
+               color: Colors.black,
+               fontWeight: FontWeight.w400),
+         ),
+         onTap: ()  {
+           Get.back();
+           Get.toNamed(GrievanceCell.routeName);
+         },
+       ),*/
+                  ],
+                ),
+                const Divider(),
+                ExpansionTile(
+                  title: const Text(
+                    "Tools",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: const Text(
+                        ' Downloads ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: () => {
+                        Get.back(),
+                        Get.toNamed(DownloadReportView.routeName),
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Company Bank Details ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Get.toNamed(CompanyBankDetails.routeName);
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                        ' Grievance Cell ',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      onTap: ()  {
+                        Get.back();
+                        Get.toNamed(GrievanceCell.routeName);
+                      },
+                    ),
+                  ],
+                ),
+                const Divider(),
                 ListTile(
                   title: const Text(
-                    ' Registration ',
+                    ' Join Now ',
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -349,6 +587,96 @@ class MianDrawer extends StatelessWidget {
                   onTap: ()  {
                     Get.back();
                     Get.toNamed(SponsorCheckView.routeName);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    ' About Us ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'About Us',
+                      'url':Constants.about_us,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Business Plan ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Business Plan',
+                      'url':Constants.BusinessPlan,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Privacy Policy ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Privacy Policy',
+                      'url':Constants.PrivacyPolicy,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Refund Policy ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Refund Policy',
+                      'url':Constants.RefundPolicy,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Disclaimer ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Disclaimer',
+                      'url':Constants.Disclaimer,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
                   },
                 ),
                 const Divider(),
@@ -398,7 +726,6 @@ class MianDrawer extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 ),
-                const Divider(),
                 ListTile(
                   title: const Text(
                     'Login',
@@ -427,6 +754,106 @@ class MianDrawer extends StatelessWidget {
                   },
                 ),
                 const Divider(),
+                ListTile(
+                  title: const Text(
+                    'About Us ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'About Us',
+                      'url':Constants.about_us,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Business Plan ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Business Plan',
+                      'url':Constants.BusinessPlan,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Privacy Policy ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Privacy Policy',
+                      'url':Constants.PrivacyPolicy,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Refund Policy ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Refund Policy',
+                      'url':Constants.RefundPolicy,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text(
+                    'Disclaimer ',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onTap: ()  {
+                    Get.back();
+                    Map<String,String> args = {
+                      'title':'Disclaimer',
+                      'url':Constants.Disclaimer,
+                    };
+                    Get.toNamed(FWebView.routeName,arguments: args);
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  title: Text(
+                    'Version: ${LocalPackageInfo.getVersion()}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
               ],
             ),
     );

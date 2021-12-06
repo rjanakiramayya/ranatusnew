@@ -33,6 +33,17 @@ class Constants {
 
   //Staging
   static const String baseUrl = 'http://staging.renatuswellness.net/MobileAPP/api/Mobile/';
+  static const String profileUrl = 'http://staging.renatuswellness.net/fileUpload/DistributorPhotos/';
+  static const String gstUrl = 'http://staging.renatuswellness.net/fileUpload/GSTImages/';
+  static const String panUrl = 'http://staging.renatuswellness.net/fileUpload/PanCardImages/';
+  static const String bankUrl = 'http://staging.renatuswellness.net/fileUpload/BankPassbooks/';
+  static const String addressUrl = 'http://staging.renatuswellness.net/fileUpload/AddressProof/';
+  static const String terms = 'https://renatuswellness.net/Mob_Terms-Conditions.html';
+  static const String about_us = 'https://renatuswellness.net/Mob_about-us.html';
+  static const String Disclaimer = 'https://renatuswellness.net/Mob_Disclaimer.html';
+  static const String PrivacyPolicy = 'https://renatuswellness.net/Mob_Privacy-Policy.html';
+  static const String RefundPolicy = 'https://renatuswellness.net/Mob_Refund-policy.html';
+  static const String BusinessPlan = 'https://renatuswellness.net/Mob_Business-plan.html';
 
   //Live
   // static const String baseUrl = '';
@@ -50,9 +61,29 @@ class Constants {
   static const String apiTabularCountViewRpt ='UniLevelPrintViewCountRpt';
   static const String apiMemberKycRequestStsUsr ='MemberKycRequestStsUsr';
   static const String apiUploadBankDetailsRequestUsr ='UploadBankDetailsRequestUsr';
+  static const String apiUploadIDProofDetailsRequestUsr ='UploadIDProofDetailsRequestUsr';
   static const String apiBankDetails ='BankDetails';
   static const String apiGetUploadBankDetailsUsr ='GetUploadBankDetailsUsr';
   static const String apiMyReferralsViewRpt ='DirectConsultantsReport';
+  static const String apiDownloads ='DownloadsRpt';
+  static const String apiCompanyBankRpt ='CompanyBanks';
+  static const String apiGrievanceCellRpt ='GrievanceCell';
+  static const String apiMemberKYC ='MemberKYC';
+  static const String apiMemberUploads ='MemberUploads';
+  static const String apiMemberPhotoRequest ='MemberPhotoRequest';
+  static const String apiWalletSummary ='EwalletSummaryRpt';
+  static const String apiCreditRequestReport ='CreditRequestReport';
+  static const String apiFundTransfer ='FundTransfer';
+  static const String apiCreditRequestddl ='CreditRequestddl';
+  static const String apiCreditRequest ='CreditRequest';
+  static const String apiUserCheckId ='CheckUserID';
+
+//Payouts
+  static const String apiIncomeReport ='WeeklyIncomeRpt';
+  static const String apiOnholdReport ='WeeklyOnHoldRpt';
+  static const String apischemeofferstatus ='SchemeandOfferStatus';
+  static const String apiCashRewardAward='';
+  static const String apiDropDown='GetDropdown';
 
   //OrderApis
   static const String apiOrderUserCheck ='CheckUserID';

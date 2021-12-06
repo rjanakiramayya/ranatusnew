@@ -7,6 +7,7 @@ import 'package:renatus/Utils/loaclpackageinfo.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Utils/validator.dart';
 import 'package:renatus/Views/forget_password_view.dart';
+import 'package:renatus/Views/sponsor_check_view.dart';
 
 class LoginView extends StatefulWidget {
   static const String routeName = '/LoginView';
@@ -53,33 +54,38 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                Image.asset(
-                  '${Constants.iconPath}rlogo.png',
-                  height: 150,
-                ),
-                const SizedBox(
-                  height: Constants.spaceM,
-                ),
                 Expanded(
                   child: Stack(
                     children: [
+                      const SizedBox(
+                        height: 190,
+                      ),
+                      // Image.asset(
+                      //   '${Constants.iconPath}rlogo.png',
+                      //   height: 150,
+                      // ),
+                      const SizedBox(
+                        height: Constants.spaceM,
+                      ),
                       Container(
                         child: Image.asset(
-                          '${Constants.imagePath}loginbg.png',
-                         // height: Get.height - 198,
+                          '${Constants.imagePath}loginbg.jpg',
+                          height: Get.height,
                           width: Get.width,
                           fit: BoxFit.fill,
                         ),
                       ),
                       Container(
+                        margin: EdgeInsets.only(top: 150),
                         padding: const EdgeInsets.all(2),
                         child: Column(
                           children: [
                             const SizedBox(
-                              height: 45,
+                              height: 20,
+                            ),
+                            const Text('Login Now',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red),),
+                            const SizedBox(
+                              height: 15,
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -126,7 +132,31 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             ),
                             const SizedBox(
-                              height: Constants.spaceL,
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.green),
+                                  width:  150,
+                                  height: 50,
+                                  child: TextButton(
+                                    onPressed: () => _validate(),
+                                    child: const Text(
+                                      'Login',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: Constants.spaceM,
                             ),
                             Container(
                               alignment: Alignment.centerRight,
@@ -136,7 +166,17 @@ class _LoginViewState extends State<LoginView> {
                                 },
                                 child: const Text(
                                   'Forgot Password ?',
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () => Get.toNamed(SponsorCheckView.routeName),
+                                child: const Text(
+                                  'Join Now',
+                                  style: TextStyle(color: Colors.green),
                                 ),
                               ),
                             ),
@@ -144,36 +184,11 @@ class _LoginViewState extends State<LoginView> {
                               height: Constants.spaceM,
                             ),
                             Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.white),
-                              width: Get.width - 150,
-                              height: 50,
-                              child: TextButton(
-                                onPressed: () => _validate(),
-                                child: const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      color: Colors.red, fontSize: 16),
-                                ),
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                'Version: ${LocalPackageInfo.getVersion()}  ',
+                                style: const TextStyle(color: Colors.green),
                               ),
-                            ),
-                            const SizedBox(
-                              height: Constants.spaceL,
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'New to Renatus? Create an account',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: Constants.spaceM,
-                            ),
-                            Text(
-                              'Version: ${LocalPackageInfo.getVersion()}',
-                              style: const TextStyle(color: Colors.white),
                             ),
                           ],
                         ),

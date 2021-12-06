@@ -76,53 +76,53 @@ class BusinessReportView extends StatelessWidget {
                               const SubChildItem("S.No", "1", false),
                               SubChildItem(
                                 "Distributor ID",
-                                snapshot.data![0]!.Idno!,
+                                snapshot.data?[0].Idno ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Name",
-                                snapshot.data![0]!.Name!,
+                                snapshot.data?[0].Name ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Status",
-                                snapshot.data![0]!.Status!,
+                                snapshot.data?[0].Status ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "City Name",
-                                snapshot.data![0]!.CityName!,
+                                snapshot.data?[0].CityName ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "State Name",
-                                snapshot.data![0]!.StateName!,
+                                snapshot.data?[0].StateName ?? '',
                                 false,
                               ),
 
                               SubChildItem(
                                 "Join Date",
-                                snapshot.data![0]!.JoinDate!,
+                                snapshot.data?[0].JoinDate ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Activation Date",
-                                snapshot.data![0]!.ActDate!,
+                                snapshot.data?[0].ActDate ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Self CC",
-                                double.parse( snapshot.data![0]!.SelfJBV!).toStringAsFixed(0),
+                                double.parse( snapshot.data?[0].SelfJBV ?? '0.00').toStringAsFixed(0),
                                 false,
                               ),
                               SubChildItem(
                                 "Downline CC",
-                                double.parse(snapshot.data![0]!.DownJBV!).toStringAsFixed(0),
+                                double.parse(snapshot.data?[0].DownJBV ?? '0.00').toStringAsFixed(0),
                                 false,
                               ),
                               SubChildItem(
                                 "Total CC",
-                                double.parse(snapshot.data![0]!.TotJBV!).toStringAsFixed(0),
+                                double.parse(snapshot.data?[0].TotJBV ?? '0.00').toStringAsFixed(0),
                                 false,
                               ),
                             ],
@@ -142,56 +142,55 @@ class BusinessReportView extends StatelessWidget {
                           padding: const EdgeInsets.all(12.0),
                           child: Column(
                             children: [
-                              SubChildItem("Team", '${snapshot.data![i+1]!.Purchase!}${snapshot.data![i+1]!.RNo!}', false),
+                              SubChildItem("Team", '${snapshot.data?[i+1].Purchase}${snapshot.data?[i+1].RNo}', false),
                               SubChildItem(
                                 "Distributor ID",
-                                snapshot.data![i+1]!.Idno!,
+                                snapshot.data?[i+1].Idno ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Name",
-                                snapshot.data![i+1]!.Name!,
+                                snapshot.data?[i+1].Name ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Status",
-                                snapshot.data![i+1]!.Status!,
+                                snapshot.data?[i+1].Status ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "City Name",
-                                snapshot.data![i+1]!.CityName!,
+                                snapshot.data?[i+1].CityName ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "State Name",
-                                snapshot.data![i+1]!.StateName!,
+                                snapshot.data?[i+1].StateName ?? '',
                                 false,
                               ),
-
                               SubChildItem(
                                 "Join Date",
-                                snapshot.data![i+1]!.JoinDate!,
+                                snapshot.data?[i+1].JoinDate ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Activation Date",
-                                snapshot.data![i+1]!.ActDate!,
+                                snapshot.data?[i+1].ActDate ?? '',
                                 false,
                               ),
                               SubChildItem(
                                 "Self CC",
-                                double.parse( snapshot.data![i+1]!.SelfJBV!).toStringAsFixed(0),
+                                double.parse( snapshot.data?[i+1].SelfJBV ?? '0.00').toStringAsFixed(0),
                                 false,
                               ),
                               SubChildItem(
                                 "Downline CC",
-                                double.parse(snapshot.data![i+1]!.DownJBV!).toStringAsFixed(0),
+                                double.parse(snapshot.data?[i+1].DownJBV ?? '0.00').toStringAsFixed(0),
                                 false,
                               ),
                               SubChildItem(
                                 "Total CC",
-                                double.parse(snapshot.data![i+1]!.TotJBV!).toStringAsFixed(0),
+                                double.parse(snapshot.data?[i+1].TotJBV ?? '0.00').toStringAsFixed(0),
                                 false,
                               ),
                             ],

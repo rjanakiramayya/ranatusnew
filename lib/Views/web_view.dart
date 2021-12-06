@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-
 import 'dart:io';
-
 import 'package:webview_flutter/webview_flutter.dart';
 
 class FWebView extends StatefulWidget {
@@ -20,6 +17,7 @@ class FWebViewState extends State<FWebView> {
   void initState() {
     super.initState();
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    EasyLoading.show(status: 'Loading...');
   }
   @override
   Widget build(BuildContext context) {

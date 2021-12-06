@@ -68,6 +68,11 @@ class _ProfileViewState extends State<ProfileView> {
           Constants.success) {
         cities.add(StateModel(Id: '0', Value: _profileModel.MemberProfile![0]!.City!));
         states.add(StateModel(Id:  _profileModel.MemberProfile![0]!.StateID!, Value: _profileModel.MemberProfile![0]!.State!));
+        addressCtrl.text = _profileModel.MemberProfile![0]!.Address1!;
+        userPincode.text = _profileModel.MemberProfile![0]!.PinCode!;
+        mobileCtrl.text = _profileModel.MemberProfile![0]!.Mobile!;
+        emailCtrl.text = _profileModel.MemberProfile![0]!.EMail!;
+        nomineeCtrl.text = _profileModel.MemberProfile![0]!.Nominee!;
         //district.add(StateModel(Id: '0', Value: _profileModel.MemberProfile![0]!.!));
         setState(() {
           isLoad = true;
@@ -357,6 +362,16 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ),
                 //datePicker('NomineeDOB'),
+                const SubHeader('Bank Details'),
+                SubChildItem('Account Holder Name', _profileModel.MemberProfile![0]!.PayeeName!, true),
+                SubChildItem('Account No', _profileModel.MemberProfile![0]!.Accno!, true),
+                SubChildItem('Bank Name', _profileModel.MemberProfile![0]!.Bank!, true),
+                SubChildItem('Branch', _profileModel.MemberProfile![0]!.Branch!, true),
+                SubChildItem('IFSC', _profileModel.MemberProfile![0]!.Ifscode!, true),
+                const SubHeader('KYC Details'),
+                SubChildItem('Pan Card No', _profileModel.MemberProfile![0]!.Panno!, true),
+                //SubChildItem('ID Proof No', _profileModel.MemberProfile![0]!.!, true),
+                SubChildItem('GST No', _profileModel.MemberProfile![0]!.gstin!, true),
               ],
             ),
           ),

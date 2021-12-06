@@ -10,6 +10,7 @@ import 'package:renatus/Utils/logger.dart';
 import 'package:renatus/Utils/network_calls.dart';
 import 'package:renatus/Utils/validator.dart';
 import 'package:renatus/Views/registration_preview_screen.dart';
+import 'package:renatus/Views/web_view.dart';
 import 'package:renatus/Widgets/adaptive_flat_button.dart';
 import 'package:renatus/Widgets/sub_header.dart';
 
@@ -182,14 +183,20 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   Widget datePicker(String datakey) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      height: 70,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black54),
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      height: 60,
       child: Row(
         children: <Widget>[
           Expanded(
             child: Text(
               dobdate,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
           FlatButton(
@@ -197,7 +204,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             child: const Text(
               'Choose Date',
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.white),
+                  fontWeight: FontWeight.bold, color: Colors.black),
             ),
             onPressed: () => _presentDatePicker('dob'),
           ),
@@ -208,14 +215,20 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   Widget nomineedatePicker(String datakey) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      height: 70,
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.black54),
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.white
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      height: 60,
       child: Row(
         children: <Widget>[
           Expanded(
             child: Text(
               nomineedob,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
           FlatButton(
@@ -223,7 +236,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             child: const Text(
               'Choose Date',
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.white),
+                  fontWeight: FontWeight.bold, color: Colors.black),
             ),
             onPressed: () => _presentDatePicker('nominee'),
           ),
@@ -329,7 +342,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               keyboardType: TextInputType.text,
                               validator: (val) => Validator.inputValidate(val!),
                               textInputAction: TextInputAction.next,
-                              enabled: false,
+                              readOnly: true,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white12,
@@ -354,7 +367,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                               keyboardType: TextInputType.text,
                               validator: (val) => Validator.inputValidate(val!),
                               textInputAction: TextInputAction.next,
-                              enabled: false,
+                              readOnly: true,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white12,
@@ -789,6 +802,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                 vertical: 8.0, horizontal: 20),
                             child: TextFormField(
                               controller: passCtrl,
+                              obscureText: true,
                               keyboardType: TextInputType.text,
                               validator: (val) =>
                                   Validator.passwordValidator(val!),
@@ -814,6 +828,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                 vertical: 8.0, horizontal: 20),
                             child: TextFormField(
                               controller: cpassCtrl,
+                              obscureText: true,
                               keyboardType: TextInputType.text,
                               validator: (val) =>
                                   Validator.passwordValidator(val!),
@@ -847,9 +862,18 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                 width: 5,
                               ),
                               const Text('I Agree & Understand'),
-                              const Text(
-                                ':Terms and Conditions',
-                                style: TextStyle(color: Colors.blue),
+                              InkWell(
+                                onTap: (){
+                                  Map<String,String> args = {
+                                    'title':'Terms & Conditions',
+                                    'url':Constants.terms,
+                                  };
+                                  Get.toNamed(FWebView.routeName,arguments: args);
+                                  },
+                                child: const Text(
+                                  ':Terms and Conditions',
+                                  style: TextStyle(color: Colors.blue),
+                                ),
                               ),
                             ],
                           ),

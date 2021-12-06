@@ -104,7 +104,7 @@ class Validator {
     if(amount.isEmpty){
       return 'Please Enter Amount';
     } if(int.parse(amount) < 0) {
-      return 'Please Enter Postive Amount';
+      return 'Please Enter Positive Amount';
     }else {
       return null;
     }

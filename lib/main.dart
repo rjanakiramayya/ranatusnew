@@ -11,6 +11,7 @@ import 'package:renatus/Views/main_view.dart';
 import 'Controllers/cartcontroller.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
   EasyLoading.instance.userInteractions = false;
 }
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Image.asset(
-        '${Constants.imagePath}splashscr.png',
+        '${Constants.imagePath}splashscr.jpg',
         width: Get.width,
         height: Get.height,
         fit: BoxFit.fill,

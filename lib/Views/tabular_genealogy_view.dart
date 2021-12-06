@@ -37,9 +37,7 @@ class TabularGenealogy extends StatelessWidget {
   void _onSelectCount(String Levelno) {
    // Logger.log(Levelno);
     Map<String, dynamic> args = {
-
       'LevelNo': Levelno,
-
     };
     Get.toNamed(TabularCountView.routeName,arguments: args);
 

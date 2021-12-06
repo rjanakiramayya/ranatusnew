@@ -270,8 +270,8 @@ class _GenealogyUnilevelPageState extends State<GenealogyUnilevel> {
       UnilevelTreeModel unilevelModel = UnilevelTreeModel.fromJson(data);
       if (unilevelModel.UniLevelTreeView!.length > 0) {
         treelist.clear();
-        treelist.add(TreeModel(Idno: unilevelModel.UniLevelTreeView![0]!.UserID!, Icon: unilevelModel.UniLevelTreeView![0]!.mstatus!, Regid: unilevelModel.UniLevelTreeView![0]!.Regid!, Name: unilevelModel.UniLevelTreeView![0]!.Name!, Team: '', Status: unilevelModel.UniLevelTreeView![0]!.mstatus!));
-        treelist.addAll(unilevelModel.UniLevelTreeViewTwo!.map((e) => TreeModel(Idno: e!.UserID!, Icon: e!.mstatus!, Regid: e!.Regid!, Name: e!.Name!, Team: e!.Team!, Status: e!.mstatus!)));
+        treelist.add(TreeModel(Idno: unilevelModel.UniLevelTreeView?[0]?.UserID ?? '', Icon: unilevelModel.UniLevelTreeView?[0]?.mstatus ?? '', Regid: unilevelModel.UniLevelTreeView?[0]?.Regid ?? '', Name: unilevelModel.UniLevelTreeView?[0]?.Name ?? '', Team: '', Status: unilevelModel.UniLevelTreeView?[0]?.mstatus??''));
+        treelist.addAll(unilevelModel.UniLevelTreeViewTwo!.map((e) => TreeModel(Idno: e?.UserID ?? '', Icon: e?.mstatus ?? '', Regid: e?.Regid ?? '', Name: e?.Name ?? '', Team: e?.Team ?? '', Status: e?.mstatus ?? '')));
         callCreateNodes();
       } else {
         callCreateNodes();

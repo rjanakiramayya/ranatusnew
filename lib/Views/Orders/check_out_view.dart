@@ -113,11 +113,11 @@ class _CheckOutViewState extends State<CheckOutView> {
         .callServer(Constants.apiInsRepurchaseOrder, param)
         .then((value) {
       var data = jsonDecode(value!.body);
-      if(data['result'].toString().toUpperCase()=='SUCC') {
+      if(data['Msg'].toString().toUpperCase()==Constants.success) {
         OrderStatusModel model = OrderStatusModel.fromJson(data);
         Get.toNamed(OredrStatusView.routeName,arguments: model);
       } else {
-        Logger.ShowWorningAlert('Warning', data['result']);
+        Logger.ShowWorningAlert('Warning', data['Message']);
       }
     });
   }

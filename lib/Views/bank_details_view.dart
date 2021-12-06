@@ -10,6 +10,7 @@ import 'package:renatus/Utils/logger.dart';
 import 'package:renatus/Utils/network_calls.dart';
 import 'package:renatus/Utils/session_manager.dart';
 import 'package:renatus/Utils/validator.dart';
+import 'package:renatus/Views/web_view.dart';
 
 
 class BankDetailsView extends StatefulWidget {
@@ -21,7 +22,7 @@ class BankDetailsView extends StatefulWidget {
 
 class _BankDetailsViewState extends State<BankDetailsView> {
   late TextEditingController accountCtrl,bankCtrl,branchCtrl,ifscCtrl,addressCtrl,cityCtrl,districtCtrl,stateCtrl;
-  String base64Image = '';
+  String base64Image = '',kycImage='';
   bool isImagepicked = false;
   late bool isLoading,isEnable,isBank;
   final _bankformKey = GlobalKey<FormState>();
@@ -54,6 +55,8 @@ class _BankDetailsViewState extends State<BankDetailsView> {
     });
   }
 
+
+
   void callGetDetails() {
     Map<String, dynamic> param = {
       'regid':SessionManager.getString(Constants.PREF_RegId),
@@ -70,6 +73,7 @@ class _BankDetailsViewState extends State<BankDetailsView> {
           cityCtrl.text = data['City'];
           stateCtrl.text = data['State'];
           districtCtrl.text = data['District'];
+          kycImage = data['KYCImg'];
         setState(() {
           isLoading =true;
           isEnable = false;
@@ -147,26 +151,26 @@ class _BankDetailsViewState extends State<BankDetailsView> {
   _onSubmit() {
     if(_bankformKey.currentState!.validate()){
       if(base64Image == '') {
-        Get.snackbar('Input Warning', 'Please Pick Id Proof Front Image',margin: EdgeInsets.fromLTRB(10, 30, 10, 10),backgroundColor: Colors.blue);
+        Get.snackbar('Input Warning', 'Please Pick Id Proof Front Image',margin: const EdgeInsets.fromLTRB(10, 30, 10, 10),backgroundColor: Colors.blue);
       } else {
         Random ranint = Random();
         String SessionId = DateTime.now().millisecondsSinceEpoch.toString()+ranint.nextInt(10000000).toString();
         Map<String, dynamic> param = {
-          'Regid':SessionManager.getString(Constants.PREF_IDNo),
+          'Regid':SessionManager.getString(Constants.PREF_RegId),
           'accno':accountCtrl.text,
           'proftype':'BANK',
           'bank':bankCtrl.text,    // ID No
           'branch':branchCtrl.text,    // Back Image
-          'ifscode':ifscCtrl.text,// Address
+          'IFSC':ifscCtrl.text,// Address
           'AccHolderName':'',
           'sesid':SessionId,//Select ID Type
           'filename':base64Image,
         };
         NetworkCalls().callPlanServer(Constants.apiUploadBankDetailsRequestUsr, param).then((value) {
           var data = jsonDecode(value!.body);
-          if(data['Msg'] == Constants.success) {
+          if(data['Msg'].toString().toUpperCase() == Constants.success) {
             Get.back();
-            Logger.ShowSuccessAlert('Success', 'Address Proof Uploaded Successfully');
+            Logger.ShowSuccessAlert('Success', 'Bank Details Uploaded Successfully');
           } else {
             Logger.ShowWorningAlert('Warning', 'Please Try Again After Some Time');
           }
@@ -270,7 +274,7 @@ class _BankDetailsViewState extends State<BankDetailsView> {
                   const SizedBox(
                     height: 10,
                   ),
-                  ElevatedButton(onPressed: () => _getBankDetails(), child: const Text('Get Bank Details')),
+                  Visibility(visible: isEnable,child: ElevatedButton(onPressed: () => _getBankDetails(), child: const Text('Get Bank Details'))),
                     const SizedBox(
                       height: 10,
                     ),
@@ -466,7 +470,32 @@ class _BankDetailsViewState extends State<BankDetailsView> {
                       ),
                     ),
                   ),
-                  Visibility(visible: isEnable,child: ElevatedButton(onPressed: _onSubmit, child: const Text('Submit')))
+                  Visibility(visible: isEnable,child: ElevatedButton(onPressed: _onSubmit, child: const Text('Submit'),),),
+                  Visibility(
+                    visible: !isEnable && isLoading,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Flexible(
+                          flex: 1,
+                          child: Text('Front Image'),
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: TextButton(
+                            child: const Text('View'),
+                            onPressed: () {
+                              Map<String,String> args = {
+                                'title':'Bank Proof',
+                                'url':'${Constants.bankUrl}${kycImage}',
+                              };
+                              Get.toNamed(FWebView.routeName,arguments: args);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
